@@ -11,8 +11,12 @@ dotenv.config();
 // Create an Express app
 const app = express();
 
+const corsOptions = {
+  origin: "http://localhost:3000/", // Replace with your frontend domain
+  optionsSuccessStatus: 200, // Some legacy browsers choke on 204
+};
 // Middleware Setup
-app.use(cors()); // Enable Cors
+app.use(cors(corsOptions)); // Enable Cors
 app.use(bodyParser.json()); // Parse Json requests
 app.use(cookieParser());
 // Mongo DB connection setup
