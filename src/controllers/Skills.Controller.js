@@ -38,7 +38,7 @@ const updateSkill = async (req, res) => {
   const { skillName, skillImage, skillCategory } = req.body;
   try {
     const skillCate = await SkillCates.findOne({
-      _id: skillCategory,
+      skillCategoryName: skillCategory,
     });
     if (!skillCate) {
       return res.status(400).json({
@@ -47,7 +47,7 @@ const updateSkill = async (req, res) => {
     }
     const updatedSkill = await Skills.findByIdAndUpdate(
       id,
-      { skillName, skillImage, skillCategory },
+      { skillName, skillImage, skillCategory: skillCate._id },
       { new: true }
     );
     res.status(201).json({
