@@ -16,8 +16,8 @@ const corsOptions = {
   optionsSuccessStatus: 200, // Some legacy browsers choke on 204
 };
 // Middleware Setup
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: true, limit: "10mb" }));
+app.use(express.urlencoded({ extended: true, limit: "10mb" }));
 app.use(cors(corsOptions)); // Enable Cors
 app.use(bodyParser.json()); // Parse Json requests
 app.use(cookieParser());
